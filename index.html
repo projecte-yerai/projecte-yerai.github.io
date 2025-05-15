@@ -2,78 +2,21 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
-  <title>Projecte Yerai</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 2rem;
-      background-color: #f2f2f2;
-      color: #333;
-    }
-    h1 {
-      color: #1a73e8;
-    }
-    .sensor-box {
-      background: white;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    button {
-      padding: 0.5rem 1rem;
-      margin-right: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
+  <title>Matemàtiques</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Projecte Yerai</h1>
-  <p>Aquesta web educativa mostra les dades d'un robot i permet controlar-ne algunes funcions.</p>
-
-  <div class="sensor-box">
-    <h2>Dades del robot</h2>
-    <p>Temperatura: <span id="temp">--</span> ºC</p>
-    <p>Llum: <span id="llum">--</span></p>
-  </div>
-
-  <div class="sensor-box">
-    <h2>Control del robot</h2>
-    <button onclick="enviarOrdre('led_on')">Encén el LED</button>
-    <button onclick="enviarOrdre('led_off')">Apaga el LED</button>
-    <button onclick="enviarOrdre('servo_dreta')">Gira servo dreta</button>
-    <button onclick="enviarOrdre('servo_esquerra')">Gira servo esquerra</button>
-  </div>
-
-  <script>
-    const ipRobot = "http://192.168.1.123"; // Canvia per la IP real de l'ESP32
-
-    function actualitzarDades() {
-      fetch(ipRobot + "/dades")
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("temp").innerText = data.temperatura;
-          document.getElementById("llum").innerText = data.llum;
-        })
-        .catch(err => console.error("Error en rebre dades:", err));
-    }
-
-    function enviarOrdre(ordre) {
-      fetch(ipRobot + "/actua?ordre=" + ordre)
-        .then(() => console.log("Ordre enviada:", ordre))
-        .catch(err => console.error("Error en enviar ordre:", err));
-    }
-
-    setInterval(actualitzarDades, 3000);
-    actualitzarDades();
-  </script>
-
+  <nav>
+    <ul>
+      <li><a href="index.html">Inici</a></li>
+      <li><a href="tecnologia.html">Tecnologia</a></li>
+      <li><a href="matematiques.html">Matemàtiques</a></li>
+      <li><a href="llengua.html">Llengua</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>Matemàtiques</h1>
+    <p>Tractament de les dades: gràfics, taules, comparatives i càlculs sobre temperatura, llum, gasos...</p>
+  </main>
 </body>
 </html>
