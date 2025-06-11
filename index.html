@@ -8,6 +8,7 @@
     <script src="script.js" defer></script>
 </head>
 
+
 <nav>
     <ul>
         <li><a href="index.html">inici</a></li>
@@ -16,9 +17,244 @@
     <li><a href="angles.html">angles</a></li>
     <li><a href="catala.html">catala</a></li>
     <li><a href="biologia.html">biologia</a></li>
-    </ul>
+     <li><a href="frances.html">frances</a></li>
+
+    </ul></nav>
 </nav>
 <h1>Us presento el meu projecte  clase </h1>
 <h4>on fare un diari de o que fare durant el dia en les meves asignatura</h4>
+<button onclick="window.scrollTo({top: 10, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 1250px; padding: 10px 15px; background: #0077cc; color: white; border: none; border-radius: 5px;">↑ Subir</button>
+<div id="reloj"></div>
+
+<style>
+  #reloj {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #03080c;
+    z-index: 1000;
+  }
+</style>
+
+
+<div id="reloj-fecha"></div>
+
+<style>
+  #reloj-fecha {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #0077cc;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-family: sans-serif;
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  function actualizarRelojYFecha() {
+    const ahora = new Date();
+    const hora = ahora.toLocaleTimeString();
+    const fecha = ahora.toLocaleDateString("es-ES", {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+    document.getElementById("reloj-fecha").textContent = `${fecha} — ${hora}`;
+  }
+
+  setInterval(actualizarRelojYFecha, 1000);
+  actualizarRelojYFecha();
+</script>
+
+
+
+
+<button onclick="toggleModoOscuro()" style="position: fixed; top: 20px; right: 20px;">🌙 Cambiar tema</button>
+
+<script>
+  function toggleModoOscuro() {
+    document.body.classList.toggle('modo-oscuro');
+  }
+</script>
+
+<style>
+  .modo-oscuro {
+    background-color: #121212;
+    color: white;
+  }
+</style>
+<style>
+  #chat-container {
+    width: 300px;
+    height: 400px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: 1px solid #ccc;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    font-family: sans-serif;
+  }
+
+  #chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  .mensaje {
+    margin: 5px 0;
+  }
+
+  .bot {
+    color: #0077cc;
+  }
+
+  .usuario {
+    text-align: right;
+    color: #333;
+  }
+
+  #chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+  }
+
+  #chat-input button {
+    background: #0077cc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
+  #chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0077cc;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+</style>
+
+<!-- Botón para mostrar/ocultar chat -->
+<button id="chat-toggle" onclick="toggleChat()">💬</button>
+
+<!-- Contenedor del chatbot -->
+<div id="chat-container" style="display: none;">
+  <div id="chat-messages"></div>
+  <div id="chat-input">
+    <input type="text" id="mensaje" placeholder="Escribe algo...">
+    <button onclick="enviarMensaje()">Enviar</button>
+  </div>
+</div>
+
+<script>
+  function toggleChat() {
+    const chat = document.getElementById("chat-container");
+    chat.style.display = chat.style.display === "none" ? "flex" : "none";
+  }
+
+  function enviarMensaje() {
+    const input = document.getElementById("mensaje");
+    const texto = input.value.trim();
+    if (texto === "") return;
+
+    agregarMensaje(texto, "usuario");
+    responderBot(texto);
+    input.value = "";
+  }
+
+  function agregarMensaje(texto, clase) {
+    const contenedor = document.getElementById("chat-messages");
+    const div = document.createElement("div");
+    div.className = `mensaje ${clase}`;
+    div.textContent = texto;
+    contenedor.appendChild(div);
+    contenedor.scrollTop = contenedor.scrollHeight;
+  }
+
+  function responderBot(texto) {
+    const respuestas = {
+      "hola": "¡Hola! ¿En qué puedo ayudarte?",
+      "quien eres": "Soy un bot de prueba integrado en esta web.",
+      "adios": "¡Hasta luego!",
+      "default": "No entiendo eso, ¿puedes repetirlo?"
+    };
+
+    const key = texto.toLowerCase();
+    const respuesta = respuestas[key] || respuestas["default"];
+
+    setTimeout(() => {
+      agregarMensaje(respuesta, "bot");
+    }, 600);
+  }
+</script>
+<div id="status-indicator" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; color: white; border-radius: 5px;"></div>
+
+<script>
+  function actualizarEstadoConexión() {
+    const indicator = document.getElementById("status-indicator");
+    if (navigator.onLine) {
+      indicator.textContent = "Conectado";
+      indicator.style.backgroundColor = "green";
+    } else {
+      indicator.textContent = "Desconectado";
+      indicator.style.backgroundColor = "red";
+    }
+  }
+
+  window.addEventListener('online', actualizarEstadoConexión);
+  window.addEventListener('offline', actualizarEstadoConexión);
+
+  // Llamamos a la función para verificar el estado de la conexión al cargar la página
+  actualizarEstadoConexión();
+</script>
+<!-- Popup -->
+<div id="popup" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+  <div style="width: 80%; height: 80%; background-color: white; border-radius: 10px; padding: 20px; position: relative; overflow: auto;">
+    <button onclick="cerrarPopup()" style="position: absolute; top: 20px; right: 20px; background-color: red; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px;">
+      Cerrar
+    </button>
+    <h1>¡Bienvenido a mi projecto de clase!</h1>
+   <h2>espero que os guste mi projecto</h2>
+  </div>
+</div>
+
+<script>
+  // Función para cerrar el popup
+  function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  // El popup se muestra automáticamente al cargar la página
+  window.onload = function() {
+    document.getElementById("popup").style.display = "flex";
+  };
+</script>
+
+
 </body>
 </html>

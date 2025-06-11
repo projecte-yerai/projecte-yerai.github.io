@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Pregunta del dia 🎓</h3>
+<p>Quina és la part principal d’una cèl·lula?</p>
+<button onclick="alert('Correcte! El nucli és molt important.')">El nucli</button>
+<button onclick="alert('Incorrecte!')">La pell</button>
+<button onclick="alert('Incorrecte!')">La sang</button>
+
+<h3>🧠 MiniQuiz: Què has après avui?</h3>
+<p id="pregunta">1. Com es diu "plou" en francès?</p>
+<button onclick="resposta(0)">Il neige</button>
+<button onclick="resposta(1)">Il pleut</button>
+<button onclick="resposta(2)">Il fait froid</button>
+<p id="resultat"></p>
+
+<script>
+let correcta = 1;
+function resposta(opcio) {
+  if (opcio === correcta) {
+    document.getElementById("resultat").innerText = "✅ Correcte!";
+  } else {
+    document.getElementById("resultat").innerText = "❌ Incorrecte. Torna-ho a provar!";
+  }
+}
+</script>
+
+<h3>🔠 Ordena els passos d'un circuit elèctric:</h3>
+<ul id="llista" style="list-style:none; padding:0;">
+  <li draggable="true">3️⃣ Bombeta s’encén</li>
+  <li draggable="true">1️⃣ Connectem la pila</li>
+  <li draggable="true">2️⃣ Tanca el circuit</li>
+</ul>
+<p>💡 Arrossega per posar en ordre!</p>
+
+<script>
+const llista = document.getElementById('llista');
+let dragging = null;
+
+llista.querySelectorAll('li').forEach(item => {
+  item.addEventListener('dragstart', () => dragging = item);
+  item.addEventListener('dragover', e => e.preventDefault());
+  item.addEventListener('drop', () => {
+    if (dragging !== item) {
+      const items = [...llista.children];
+      const draggedIndex = items.indexOf(dragging);
+      const targetIndex = items.indexOf(item);
+      if (draggedIndex < targetIndex) {
+        llista.insertBefore(dragging, item.nextSibling);
+      } else {
+        llista.insertBefore(dragging, item);
+      }
+    }
+  });
+});
+</script>
+
+<h3>🎰 Roda de preguntes!</h3>
+<button onclick="preguntaAleatoria()">🎲 Nova pregunta</button>
+<p id="preguntaRandom"></p>
+
+<script>
+const preguntes = [
+  "Què és una cèl·lula?",
+  "Com es diu 'sol' en anglès?",
+  "Quina funció fa una pila en un circuit?",
+  "Com saludes en francès?",
+  "Quins idiomes estàs aprenent?"
+];
+
+function preguntaAleatoria() {
+  const i = Math.floor(Math.random() * preguntes.length);
+  document.getElementById("preguntaRandom").innerText = preguntes[i];
+}
+</script>
+
+<h3>🃏 Joc de memòria: idiomes!</h3>
+<div style="display: flex; gap: 10px;">
+  <button onclick="girar(this, 'sol')" style="width:60px;height:60px;">❓</button>
+  <button onclick="girar(this, 'sun')" style="width:60px;height:60px;">❓</button>
+  <button onclick="girar(this, 'lluna')" style="width:60px;height:60px;">❓</button>
+  <button onclick="girar(this, 'moon')" style="width:60px;height:60px;">❓</button>
+</div>
+<p id="memoriaMsg"></p>
+
+<script>
+let primer = null;
+function girar(btn, valor) {
+  btn.innerText = valor;
+  btn.disabled = true;
+  if (!primer) {
+    primer = {btn, valor};
+  } else {
+    if ( (primer.valor === "sol" && valor === "sun") || 
+         (primer.valor === "sun" && valor === "sol") ||
+         (primer.valor === "lluna" && valor === "moon") ||
+         (primer.valor === "moon" && valor === "lluna")) {
+      document.getElementById("memoriaMsg").innerText = "✅ Parella trobada!";
+    } else {
+      setTimeout(() => {
+        btn.innerText = "❓";
+        btn.disabled = false;
+        primer.btn.innerText = "❓";
+        primer.btn.disabled = false;
+        document.getElementById("memoriaMsg").innerText = "❌ Torna-ho a intentar!";
+      }, 800);
+    }
+    primer = null;
+  }
+}
+</script>
+
+<h3>🔠 El Penjat: endevina la paraula</h3>
+<p id="paraula">_ _ _ _ _</p>
+<input id="lletra" maxlength="1">
+<button onclick="penjat()">Endevinar</button>
+<p id="missatge"></p>
+
+<script>
+let solucio = "avió";
+let oculta = Array.from(solucio).map(() => "_");
+let intents = 5;
+
+function penjat() {
+  const lletra = document.getElementById("lletra").value.toLowerCase();
+  document.getElementById("lletra").value = "";
+  let correcte = false;
+  solucio.split('').forEach((l, i) => {
+    if (l === lletra) {
+      oculta[i] = lletra;
+      correcte = true;
+    }
+  });
+  if (!correcte) intents--;
+  document.getElementById("paraula").innerText = oculta.join(" ");
+  document.getElementById("missatge").innerText =
+    intents > 0
+      ? oculta.join("") === solucio ? "🎉 Guanyat!" : `Et queden ${intents} intents`
+      : "💀 Has perdut! Era: " + solucio;
+}
+</script>
+
+
+
+
+
+<h3>🧩 Ordre correcte de la imatge</h3>
+<div style="display:flex;gap:10px;">
+  <img id="1" src="p3.jpg" width="100">
+  <img id="2" src="p1.jpg" width="100">
+  <img id="3" src="p2.jpg" width="100">
+</div>
+<button onclick="ordenar()">🔄 Ordenar correctament</button>
+
+<script>
+function ordenar() {
+  document.getElementById("1").src = "p1.jpg";
+  document.getElementById("2").src = "p2.jpg";
+  document.getElementById("3").src = "p3.jpg";
+}
+</script>
+
+<h3>⏱️ Cronòmetre de concentració</h3>
+<p>Prem "Inicia" i para quan et desconcentris</p>
+<button onclick="iniciaCrono()">▶️ Inicia</button>
+<button onclick="aturaCrono()">⏹️ Atura</button>
+<p id="temps">0 segons</p>
+
+<script>
+let inici;
+let crono;
+function iniciaCrono() {
+  inici = Date.now();
+  crono = setInterval(() => {
+    const s = Math.floor((Date.now() - inici) / 1000);
+    document.getElementById("temps").innerText = `${s} segons`;
+  }, 1000);
+}
+function aturaCrono() {
+  clearInterval(crono);
+}
+</script>
+
+<h3>🎯 Atura el comptador a 10.000 segons!</h3>
+<p id="contador">0.000</p>
+<button onclick="iniciar()">▶️ Inicia</button>
+<button onclick="aturar()">⏹️ Atura</button>
+<p id="resultat"></p>
+
+<script>
+let startTime, interval;
+
+function iniciar() {
+  document.getElementById("resultat").innerText = "";
+  startTime = performance.now();
+  interval = setInterval(() => {
+    const temps = (performance.now() - startTime).toFixed(3);
+    document.getElementById("contador").innerText = temps;
+  }, 10);
+}
+
+function aturar() {
+  clearInterval(interval);
+  const final = parseFloat(document.getElementById("contador").innerText);
+  const dif = Math.abs(10000 - final).toFixed(3);
+  let missatge = `⏱️ Has parat a ${final} ms.`;
+  if (dif < 100) missatge += " 🎉 Bravíssim!";
+  else if (dif < 300) missatge += " 💪 Molt bé!";
+  else if (dif < 600) missatge += " 👍 Acceptable.";
+  else missatge += " 🤏 Pots millorar.";
+  document.getElementById("resultat").innerText = missatge;
+}
+</script>
+
+<h3>🎲 Llança el dau!</h3>
+<p style="font-size: 40px;" id="dau">🎲</p>
+<button onclick="tirarDau()">Tira</button>
+
+<script>
+function tirarDau() {
+  const daus = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+  const tirada = Math.floor(Math.random() * 6);
+  document.getElementById("dau").innerText = daus[tirada];
+}
+</script>
+
+<h3>🧪 Barreja de pocions!</h3>
+<p>Tria dos colors:</p>
+<select id="color1">
+  <option value="vermell">Vermell</option>
+  <option value="blau">Blau</option>
+  <option value="groc">Groc</option>
+</select>
+<select id="color2">
+  <option value="vermell">Vermell</option>
+  <option value="blau">Blau</option>
+  <option value="groc">Groc</option>
+</select>
+<button onclick="barreja()">Barreja!</bu
+
+    <h1>Descifra el mensaje</h1>
+<p>Mensaje cifrado con un desplazamiento César de 3:</p>
+<div id="cipherText">Khoor, Fdhvdu Vhfuhw!</div>
+
+<input type="text" id="userInput" placeholder="Escribe el mensaje descifrado aquí" />
+<button onclick="checkAnswer()">Comprobar</button>
+
+<div id="result"></div>
+
+<script>
+  const originalMessage = "Hola, Caesar Secret!";
+
+  function checkAnswer() {
+    const userText = document.getElementById("userInput").value.trim();
+
+    if(userText.length === 0) {
+      showResult("Por favor, escribe tu respuesta.", false);
+      return;
+    }
+
+    if(userText.toLowerCase() === originalMessage.toLowerCase()) {
+      showResult("¡Correcto! Has descifrado el mensaje.", true);
+    } else {
+      showResult("No es correcto, inténtalo de nuevo.", false);
+    }
+  }
+
+  function showResult(msg, isCorrect) {
+    const resultDiv = document.getElementById("result");
+    resultDiv.textContent = msg;
+    resultDiv.style.color = isCorrect ? "#0f9" : "#f55";
+  }
+</script>
+
+</body>
+</html>

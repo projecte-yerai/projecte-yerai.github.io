@@ -24,3 +24,139 @@ nav a{
     font-family: sans-serif;
     font-size: 18px;
 }
+
+<html>
+<head>
+  <style>
+    body {
+      background: #e0e0e0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+      font-family: Arial, sans-serif;
+    }
+
+    .scene {
+      width: 600px;
+      height: 400px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(10deg) rotateY(-20deg);
+      animation: rotateRoom 30s infinite linear;
+    }
+
+    @keyframes rotateRoom {
+      0%   { transform: rotateX(10deg) rotateY(0deg); }
+      100% { transform: rotateX(10deg) rotateY(360deg); }
+    }
+
+    .room {
+      position: absolute;
+      width: 600px;
+      height: 400px;
+      background: #dfe6e9;
+      transform: translateZ(-100px);
+      transform-style: preserve-3d;
+    }
+
+    .wall, .floor, .ceiling {
+      position: absolute;
+      background: #b2bec3;
+      opacity: 0.95;
+    }
+
+    .floor {
+      width: 600px;
+      height: 200px;
+      transform: rotateX(90deg) translateZ(-100px);
+      transform-origin: top;
+      background: #a1887f;
+    }
+
+    .ceiling {
+      width: 600px;
+      height: 200px;
+      transform: rotateX(-90deg) translateZ(-200px);
+      transform-origin: bottom;
+      background: #f0f0f0;
+    }
+
+    .wall.back {
+      width: 600px;
+      height: 400px;
+      transform: translateZ(-200px);
+    }
+
+    .wall.left {
+      width: 400px;
+      height: 200px;
+      transform: rotateY(90deg) translateZ(-300px);
+      transform-origin: left;
+    }
+
+    .wall.right {
+      width: 400px;
+      height: 200px;
+      right: 0;
+      transform: rotateY(-90deg) translateZ(-300px);
+      transform-origin: right;
+    }
+
+    .mueble {
+      position: absolute;
+      transform-style: preserve-3d;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .cama {
+      width: 120px;
+      height: 40px;
+      background: #6c5ce7;
+      transform: translate3d(50px, 160px, -180px);
+    }
+
+    .armario {
+      width: 60px;
+      height: 100px;
+      background: #2d3436;
+      transform: translate3d(480px, 100px, -180px);
+    }
+
+    .escritorio {
+      width: 100px;
+      height: 40px;
+      background: #00b894;
+      transform: translate3d(50px, 320px, -180px);
+    }
+
+    .estanteria {
+      width: 40px;
+      height: 80px;
+      background: #d63031;
+      transform: translate3d(520px, 280px, -180px);
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="room">
+      <div class="floor"></div>
+      <div class="ceiling"></div>
+      <div class="wall back"></div>
+      <div class="wall left"></div>
+      <div class="wall right"></div>
+
+      <div class="mueble cama">Cama</div>
+      <div class="mueble armario">Armario</div>
+      <div class="mueble escritorio">Escritorio</div>
+      <div class="mueble estanteria">Estantería</div>
+    </div>
+  </div>
+</body>
+</html>
