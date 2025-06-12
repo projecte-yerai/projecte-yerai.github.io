@@ -23,16 +23,18 @@
     <p class="description">
     Per mostrar aquestes dades, he utilitzat una placa ESP32 equipada amb sensors ambientals. Mitjançant ArduinoBlocks he programat la lectura de temperatura i llum, i la seva transmissió mitjançant WiFi. Aquestes dades s'envien a Google Sheets i es mostren aquí a la web.
     </p>
-    <div class="sensor-box">
-      <h2>Dades de l'hort</h2>
-      <p>Temperatura: <span id="temp">--</span> ºC</p>
-      <p>Humitat: <span id="humitat">--</span> %</p>
-      <p>Llum: <span id="llum">--</span></p>
-      <p>Humitat Terra: <span id="terra">--</span> %</p>
-      <p>CO₂: <span id="co2">--</span> ppm</p>
-      <p>Hora: <span id="hora">--</span></p>
-    </div>
 
+<div class="sensor-box">
+  <h2>Dades de l'hort</h2>
+  <table>
+    <tr><td>Temperatura:</td><td><span id="temp">--</span> ºC</td></tr>
+    <tr><td>Humitat:</td><td><span id="humitat">--</span> %</td></tr>
+    <tr><td>Llum:</td><td><span id="llum">--</span></td></tr>
+    <tr><td>Humitat Terra:</td><td><span id="terra">--</span> %</td></tr>
+    <tr><td>CO₂:</td><td><span id="co2">--</span> ppm</td></tr>
+    <tr><td>Hora:</td><td><span id="hora">--</span></td></tr>
+  </table>
+</div>
     <div class="sensor-box">
       <h2>Control del robot (en local)</h2>
       <button onclick="enviarOrdre('led_on')">Encén el LED</button>
