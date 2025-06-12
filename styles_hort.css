@@ -47,7 +47,10 @@ p.description {
   color: #333;
   margin-bottom: 2rem;
 }
-
+ol.description {
+  color: #333;
+  margin-bottom: 2rem;
+}
 .sensor-box {
   background: white;
   padding: 2rem;
