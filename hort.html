@@ -47,18 +47,22 @@
     const urlDadesGoogle = "https://script.google.com/macros/s/AKfycbwl2YgXqyIdiVD2w06cgyZYWYNDKhiyTa3v7i7KxC8svb3iKzAYOhSuDINxQx8Sl6llgA/exec";
 
     function carregarDades() {
-      fetch(urlDadesGoogle)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("temp").innerText = data.T;
-          document.getElementById("humitat").innerText = data.H;
-          document.getElementById("llum").innerText = data.Ll;
-          document.getElementById("terra").innerText = data["H-t"];
-          document.getElementById("co2").innerText = data.co2;
-          document.getElementById("hora").innerText = data.Hora;
-        })
-        .catch(err => console.error("Error en carregar dades de Google:", err));
-    }
+  fetch(urlDadesGoogle)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("temp").innerText = data.T;
+      document.getElementById("humitat").innerText = data.H;
+      document.getElementById("llum").innerText = data.Ll;
+      document.getElementById("terra").innerText = data["H-t"];
+      document.getElementById("co2").innerText = data.co2;
+
+      const horaOriginal = data.Hora;
+      const dataObj = new Date(horaOriginal);
+      const horaFormatada = dataObj.toLocaleString('ca-ES', { timeZone: 'Europe/Madrid' });
+      document.getElementById("hora").innerText = horaFormatada;
+    })
+    .catch(err => console.error("Error en carregar dades de Google:", err));
+}
 
     // Carrega dades cada 5 segons
     setInterval(carregarDades, 5000);
