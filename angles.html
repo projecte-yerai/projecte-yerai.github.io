@@ -10,16 +10,16 @@
 <body>
    
     <nav>
-      <ul>
-        <li><a href="index.html">Inici</a></li>
-        <li><a href="hort.html">Hort</a></li>
-        <li><a href="tecnologia.html">Tecnologia</a></li>
-        <li><a href="castella.html">Castellà</a></li>
-        <li><a href="angles.html">Anglès</a></li>
-        <li><a href="catala.html">Català</a></li>
-        <li><a href="biologia.html">Biologia</a></li>
-        <li><a href="frances.html">Francès</a></li>
-      </ul>
+        <ul>
+            <li><a href="index.html">inici</a></li>
+            <li><a href="tecnologia.html">tecnologia</a></li>
+            <li><a href="castella.html">castella</a></li>
+        <li><a href="angles.html">angles</a></li>
+        <li><a href="catala.html">catala</a></li>
+        <li><a href="biologia.html">biologia</a></li>
+         <li><a href="frances.html">frances</a></li>
+                  <li><a href="hort.html">hort</a></li>
+        </ul>
     </nav>
     <h1>Here I will make my diary</h1>
     <h2>Day 1</h2>
@@ -32,6 +32,14 @@
 
 <h3>Today we tried to program the LoRa with the boards but it was a mess because we don't know it, we will know tomorrow barely how to transfer the data from the garden to the base plate which will be placed automatically from JSON, so we automate it, we will place an external battery and if we can we will place solar panels because the LoRa can only send information every 2-5 minutes due to Spanish law. To be honest, I feel lazy to place everything I do every day because I'm very sleepy.</h3>
 
+<h2>Day 4</h2>
+<h3>
+Today we connected the LoRa system to the base board and finally started receiving data from the garden, which was quite exciting since until now we had only tested components separately. We powered on the system and saw that it began sending information automatically as planned. We tested several sensors; some worked well, others didn’t respond properly, so we disconnected and swapped them until we kept the ones giving consistent readings.We also installed the external battery so the system can stay powered without relying on the computer. During the tests, we noticed the LoRa sent data with a slight delay, but within the limits allowed by the regulations. We let it run for a good while to make sure everything stayed stable. There are still some details to adjust and we need to see how it performs over longer periods, but for now, we’re happy because everything is starting to work as it should. Little by little, the project is taking shape.
+</h3>
+<h2>Day 5</h2>
+<h3>
+Today we took a major step forward in the project by starting to work with Apps Script to manage all the information sent by the LoRa system. The idea is to automate data processing to avoid doing it manually, saving time and reducing errors. First, we set up a script that receives data transmitted by LoRa and automatically organizes it into a Google Sheets spreadsheet. This allows us to centralize all the information and keep it well organized for easy access at any time. After getting the spreadsheet up and running, we focused on creating a connection between the sheet and our website. This way, we can display the data in real time in a visual and accessible way, without needing to access the sheet directly. This integration will help us monitor the garden’s status from any internet-connected device. Although there are still many improvements and details to refine, today we successfully connected the three main parts of the system: data capture with LoRa, storage and processing with Apps Script and Google Sheets, and presentation on the web. Without a doubt, a very productive day that brings us closer to having a fully automated and functional system.
+</h3>
 
 </body>
 </html>
