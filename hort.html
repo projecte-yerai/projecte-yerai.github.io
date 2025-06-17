@@ -67,14 +67,17 @@
     setInterval(carregarDades, 5000);
     carregarDades();
 
-    // Mantinc la part de control per l'ESP32 local
-    const ipRobot = "http://192.168.1.123";
+    // Enviar dades a Google Sheets
+  function enviarOrdre(ordre) {
+    const urlOrdresGoogle = "https://script.google.com/macros/s/AKfycbwl2YgXqyIdiVD2w06cgyZYWYNDKhiyTa3v7i7KxC8svb3iKzAYOhSuDINxQx8Sl6llgA/exec";
+  
+  // Passarem l'ordre com a paràmetre GET
+  const urlAmbParametres = urlOrdresGoogle + "?ordre=" + ordre;
 
-    function enviarOrdre(ordre) {
-      fetch(ipRobot + "/actua?ordre=" + ordre)
-        .then(() => console.log("Ordre enviada:", ordre))
-        .catch(err => console.error("Error en enviar ordre:", err));
-    }
+  fetch(urlAmbParametres)
+    .then(() => console.log("Ordre enviada a Google Sheets:", ordre))
+    .catch(err => console.error("Error en enviar ordre:", err));
+}
   </script>
 </body>
 </html>
