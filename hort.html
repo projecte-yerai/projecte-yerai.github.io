@@ -22,7 +22,6 @@
   <main>
     <h1>Automatització de l'hort</h1>
 
-    <!-- Dades de sensors -->
     <div class="sensor-box">
       <h2>Dades de l'hort</h2>
       <table>
@@ -35,7 +34,6 @@
       </table>
     </div>
 
-    <!-- Control actuadors -->
     <div class="sensor-box">
       <h2>Control dels actuadors</h2>
       <button onclick="enviarOrdre('led_on')">Encén el LED</button>
@@ -44,7 +42,6 @@
       <button onclick="enviarOrdre('motobomba_off')">Apaga la motobomba</button>
     </div>
 
-    <!-- Estat actual -->
     <div class="sensor-box">
       <h2>Estat actual dels actuadors</h2>
       <p>LED: <span id="estat_led">Desconegut</span></p>
@@ -53,14 +50,11 @@
   </main>
 
   <script>
-    // Substitueix aquí per la teva URL de Google Apps Script
-    const urlDadesGoogle = "https://script.google.com/macros/s/AKfycbw-eaBqUf2L685tpzcTxVvdJ66Nn7ZJZemlLbfCl_jeU4-nexx-qGMZVd_Ytv-FioUrYA/exec";
-    const urlOrdresGoogle = urlDadesGoogle;
-    const urlEstatGoogle = urlDadesGoogle + "?estat=1";
+    // Aquí tens ja la teva URL integrada bro
+    const urlBase = "https://script.google.com/macros/s/AKfycbw-eaBqUf2L685tpzcTxVvdJ66Nn7ZJZemlLbfCl_jeU4-nexx-qGMZVd_Ytv-FioUrYA/exec";
 
-    // Carregar dades de sensors
     function carregarDades() {
-      fetch(urlDadesGoogle)
+      fetch(urlBase)
         .then(res => res.json())
         .then(data => {
           document.getElementById("temp").innerText = data.T;
@@ -77,17 +71,15 @@
         .catch(err => console.error("Error en carregar dades:", err));
     }
 
-    // Enviar ordres
     function enviarOrdre(ordre) {
-      fetch(urlOrdresGoogle + "?ordre=" + ordre)
+      fetch(urlBase + "?ordre=" + ordre)
         .then(() => console.log("Ordre enviada:", ordre))
-        .then(() => carregarEstatActuadors()) // Actualitzar estat immediatament després d'enviar
+        .then(() => carregarEstatActuadors())
         .catch(err => console.error("Error en enviar ordre:", err));
     }
 
-    // Carregar estat actual dels actuadors
     function carregarEstatActuadors() {
-      fetch(urlEstatGoogle)
+      fetch(urlBase + "?estat=1")
         .then(res => res.json())
         .then(data => {
           document.getElementById("estat_led").innerText = data.LED;
@@ -96,13 +88,11 @@
         .catch(err => console.error("Error en carregar estat:", err));
     }
 
-    // Actualització periòdica
     setInterval(() => {
       carregarDades();
       carregarEstatActuadors();
     }, 5000);
 
-    // Carreguem inicialment
     carregarDades();
     carregarEstatActuadors();
   </script>
