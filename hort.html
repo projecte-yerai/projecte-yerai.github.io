@@ -32,13 +32,18 @@
     <tr><td>Hora:</td><td><span id="hora">--</span></td></tr>
   </table>
 </div>
-    <div class="sensor-box">
-      <h2>Control dels actuadors <i>(pendent)</i></h2>
-      <button onclick="enviarOrdre('led_on')">Encén el LED</button>
-      <button onclick="enviarOrdre('led_off')">Apaga el LED</button>
-      <button onclick="enviarOrdre('motobomba_on')">Encén la motobomba</button>
-      <button onclick="enviarOrdre('motobomba_off')">Apaga la motobomba</button>
-    </div>
+<div class="sensor-box">
+    <h2>Control dels actuadors <i>(pendent)</i></h2>
+    <button onclick="enviarOrdre('led_on')">Encén el LED</button>
+    <button onclick="enviarOrdre('led_off')">Apaga el LED</button>
+    <button onclick="enviarOrdre('motobomba_on')">Encén la motobomba</button>
+    <button onclick="enviarOrdre('motobomba_off')">Apaga la motobomba</button>
+</div>
+<div class="sensor-box">
+  <h2>Estat actual</h2>
+  <p>LED: <span id="estat_led">Desconegut</span></p>
+  <p>Motobomba: <span id="estat_motobomba">Desconegut</span></p>
+</div>
   </main>
 
   <script>
