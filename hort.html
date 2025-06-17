@@ -36,14 +36,14 @@
       <h2>Control dels actuadors <i>(pendent)</i></h2>
       <button onclick="enviarOrdre('led_on')">Encén el LED</button>
       <button onclick="enviarOrdre('led_off')">Apaga el LED</button>
-      <button onclick="enviarOrdre('servo_dreta')">Gira servo dreta</button>
-      <button onclick="enviarOrdre('servo_esquerra')">Gira servo esquerra</button>
+      <button onclick="enviarOrdre('motobomba_on')">Encén la motobomba</button>
+      <button onclick="enviarOrdre('motobomba_off')">Apaga la motobomba</button>
     </div>
   </main>
 
   <script>
     // URL del Google Apps Script web
-    const urlDadesGoogle = "https://script.google.com/macros/s/AKfycbwl2YgXqyIdiVD2w06cgyZYWYNDKhiyTa3v7i7KxC8svb3iKzAYOhSuDINxQx8Sl6llgA/exec";
+    const urlDadesGoogle = "https://script.google.com/macros/s/AKfycbw-eaBqUf2L685tpzcTxVvdJ66Nn7ZJZemlLbfCl_jeU4-nexx-qGMZVd_Ytv-FioUrYA/exec";
 
     function carregarDades() {
   fetch(urlDadesGoogle)
@@ -69,7 +69,7 @@
 
     // Enviar dades a Google Sheets
   function enviarOrdre(ordre) {
-    const urlOrdresGoogle = "https://script.google.com/macros/s/AKfycbwl2YgXqyIdiVD2w06cgyZYWYNDKhiyTa3v7i7KxC8svb3iKzAYOhSuDINxQx8Sl6llgA/exec";
+    const urlOrdresGoogle = "https://script.google.com/macros/s/AKfycbw-eaBqUf2L685tpzcTxVvdJ66Nn7ZJZemlLbfCl_jeU4-nexx-qGMZVd_Ytv-FioUrYA/exec";
   
   // Passarem l'ordre com a paràmetre GET
   const urlAmbParametres = urlOrdresGoogle + "?ordre=" + ordre;
