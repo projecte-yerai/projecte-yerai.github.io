@@ -13,11 +13,12 @@
             <li><a href="index.html">inici</a></li>
             <li><a href="tecnologia.html">tecnologia</a></li>
             <li><a href="castella.html">castella</a></li>
-        <li><a href="angles.html">angles</a></li>
+ <li><a href="plastica.html">plastica</a></li>
         <li><a href="catala.html">catala</a></li>
         <li><a href="biologia.html">biologia</a></li>
          <li><a href="frances.html">frances</a></li>
                   <li><a href="hort.html">hort</a></li>
+                        <li><a href="matematiques.html">matematiques</a></li>
         </ul>
 
     </nav>
@@ -33,9 +34,153 @@
 
 
 
-    <img src="img/yerai1.png" alt="Logo" width="350">
+    <img src="img/yerai1enbyn.png" alt="Logo" width="350">
 <a href="https://www.websitecarbon.com/website/projecte-yerai-cat/" target="_blank"><h1>mira lo que contamina mi pagina web</h1></a>
-<h2>Que fa</h2>
+<h2>Activitat: Anàlisi d'eines de sostenibilitat web</h2>
+
+<ol>
+  <li>
+    <strong>Website Carbon Calculator</strong><br>
+    És una eina de computabilització que mesura quantes emissions de CO<sub>2</sub> genera cada visita.
+  </li>
+
+  <li>
+    <strong>Què mesura?</strong><br>
+    Càrrega de la pàgina, eficiència del codi, servidor verd, optimització d’imatges i més.
+  </li>
+
+  <li>
+    <strong>Què pots analitzar?</strong><br>
+    Eficiència del servidor, ús d’energies renovables.
+  </li>
+
+  <li>
+    <strong>Ideal per a:</strong><br>
+    Saber si la web que crees és verda o contamina molt.
+  </li>
+</ol>
+<a href="https://gtmetrix.com/reports/projecte-yerai.cat/e79blHW5/" target="_blank" rel="noopener noreferrer">
+  <h1>Mira la eficiencia energética de mi página web</h1>
+</a>
+
+<section>
+  <h2>GTmetrix</h2>
+  <p><strong>¿Qué hace?</strong></p>
+  <p>Analiza la velocidad y eficiencia de una página web.</p>
+  <p><strong>Relación con la sostenibilidad:</strong></p>
+  <p>Las páginas lentas suelen consumir más recursos. Mejorarlas contribuye a cuidar el medio ambiente.</p>
+</section>
+
+<a href="https//ecograder.com/report/lmRqExdnJRpTb4zazLaX4nYR" target="_blank"><h1>mira la sostenibilitat digital de la meva sitio web</h1></a>
+ <ol>
+    <strong>Ecogarden</strong><br>
+    Analitza la URL i et dona una puntuació de sostenibilitat digital.
+  </li>
+
+  <li>
+    <strong>Què mesura?</strong><br>
+    Càrrega de la pàgina, eficiència del codi, servidor verd, optimització d’imatges i més.
+  </li>
+
+  <li>
+    <strong>Què pots analitzar?</strong><br>
+    Eficiència del servidor, ús d’energies renovables.
+  </li>
+
+  <li>
+    <strong>Ideal per a:</strong><br>
+    Saber si la web que crees és verda o contamina molt.
+  </li>
+
+  <li>
+    <strong>Punt fort:</strong><br>
+    Dona consells pràctics per millorar la sostenibilitat de la web.
+  </li>
+</ol>
+<h3>3. <a href="https://tinypng.com" target="_blank">TinyPNG</a> o <a href="https://squoosh.app" target="_blank">Squoosh</a></h3>
+<p><strong>Què fan?</strong> Redueixen el pes de les imatges sense perdre qualitat.</p>
+<p><strong>Per a què serveix?</strong> Comprimir imatges fa que la web sigui més ràpida i contamini menys.</p>
+<p><strong>Important:</strong> El pes de les imatges és una de les coses que més energia consumeixen en una web.</p>
+
+<h3>4. <a href="https://www.lowwwcarbon.com" target="_blank">Lowwwcarbon</a></h3>
+<p><strong>Què és?</strong> Una guia i exemple de bones pràctiques per dissenyar webs sostenibles.</p>
+<p><strong>Contingut útil:</strong> Explica per què alguns colors i tipografies són millors que altres pel consum d'energia, i com fer webs més simples i eficients.</p>
+<p><strong>Ideal per inspirar-se</strong> i aplicar-ho a un projecte escolar.</p>
+
+<h2>Mini Joc: Quant saps de Ciències?</h2>
+<p>Tria la resposta correcta:</p>
+
+<div id="quiz-container">enera cada visista
+  <div id="question"></div>
+  <div id="answers"></div>
+  <button onclick="nextQuestion()">Següent</button>
+  <p id="result"></p>
+</div>
+
+<script>
+  const quiz = [
+    {
+      question: "Quin és el planeta més proper al Sol?",
+      options: ["Venus", "Mercuri", "Mart", "Terra"],
+      answer: "Mercuri"
+    },
+    {
+      question: "Quants ossos té el cos humà adult?",
+      options: ["206", "198", "210", "180"],
+      answer: "206"
+    },
+    {
+      question: "Quin gas respirem per viure?",
+      options: ["Oxigen", "Nitrogen", "Diòxid de carboni", "Heli"],
+      answer: "Oxigen"
+    },
+    {
+      question: "Quina part de la cèl·lula conté l’ADN?",
+      options: ["Mitocòndria", "Citoplasma", "Nucli", "Ribosoma"],
+      answer: "Nucli"
+    }
+  ];
+
+  let current = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const q = quiz[current];
+    document.getElementById("question").innerText = q.question;
+    const answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+    q.options.forEach(option => {
+      const btn = document.createElement("button");
+      btn.innerText = option;
+      btn.onclick = () => checkAnswer(option);
+      answersDiv.appendChild(btn);
+    });
+    document.getElementById("result").innerText = "";
+  }
+
+  function checkAnswer(selected) {
+    const correct = quiz[current].answer;
+    if (selected === correct) {
+      score++;
+      document.getElementById("result").innerText = "✅ Correcte!";
+    } else {
+      document.getElementById("result").innerText = "❌ Incorrecte. Resposta correcta: " + correct;
+    }
+  }
+
+  function nextQuestion() {
+    current++;
+    if (current < quiz.length) {
+      loadQuestion();
+    } else {
+      document.getElementById("quiz-container").innerHTML =
+        `<h3>Joc acabat</h3><p>Has encertat ${score} de ${quiz.length} preguntes.</p>`;
+    }
+  }
+
+  // Inicia la primera pregunta
+  loadQuestion();
+</script>
 
 </body>
 </html>
